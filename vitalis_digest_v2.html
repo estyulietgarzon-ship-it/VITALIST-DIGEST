@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitalis Digest — Bienestar que se siente desde adentro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --g1:#1A3C2A;--g2:#2D5A27;--g3:#4A8C3F;--g4:#6BB85C;--g5:#A8D89A;--gpale:#E8F5E3;--gmist:#F4FAF2;
+  --gold:#C8860A;--goldpale:#FDF3DC;--earth:#7A5C3A;
+  --cream:#FAFAF5;--white:#fff;
+  --text:#1A2E1A;--soft:#4A6B4A;--muted:#7A9A7A;
+  --border:#D4E8CC;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--gmist)}
+::-webkit-scrollbar-thumb{background:var(--g3);border-radius:3px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 3rem;
+  background:rgba(250,250,245,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(212,232,204,.6);
+  transition:all .3s
+}
+nav.scrolled{box-shadow:0 4px 24px rgba(26,60,42,.12)}
+.nav-logo img{height:48px;width:auto;display:block}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:500;letter-spacing:.05em;color:var(--soft);text-decoration:none;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:2px;background:var(--g3);transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover{color:var(--g2)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{background:var(--g2);color:white!important;padding:.45rem 1.2rem;border-radius:50px;font-size:.8rem!important}
+.nav-cta:hover{background:var(--g1)!important}
+.nav-cta::after{display:none!important}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  padding:7rem 3rem 3rem;gap:0;
+  position:relative;overflow:hidden;
+}
+.hero-bg-art{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 70% at 75% 50%, rgba(168,216,154,.28) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 50% at 5% 85%, rgba(107,184,92,.15) 0%, transparent 55%),
+    radial-gradient(ellipse 25% 35% at 95% 10%, rgba(200,134,10,.08) 0%, transparent 50%);
+}
+/* organic leaf shapes as bg decoration */
+.hero-leaf-deco{position:absolute;pointer-events:none;z-index:0;opacity:.06}
+.hld1{top:-5%;right:5%;width:400px;height:400px;background:var(--g3);border-radius:80% 20% 80% 20%/20% 80% 20% 80%;transform:rotate(25deg)}
+.hld2{bottom:-10%;left:-5%;width:300px;height:300px;background:var(--g4);border-radius:60% 40% 60% 40%/40% 60% 40% 60%;transform:rotate(-15deg)}
+
+.hero-left{position:relative;z-index:1;padding-right:3rem}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gpale);color:var(--g2);
+  font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:.4rem 1rem;border-radius:50px;margin-bottom:1.6rem;
+  border:1px solid var(--border);
+  animation:fadeUp .6s ease both
+}
+.hero-logo-hero{height:80px;width:auto;margin-bottom:1.4rem;animation:fadeUp .65s .05s ease both}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:700;line-height:1.1;
+  color:var(--g1);margin-bottom:1rem;
+  animation:fadeUp .7s .1s ease both
+}
+.hero-title em{font-style:italic;color:var(--g3)}
+.hero-sub{font-size:1.05rem;font-weight:300;color:var(--soft);line-height:1.7;margin-bottom:2rem;animation:fadeUp .7s .15s ease both}
+.hero-sub strong{color:var(--g2);font-weight:500}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .2s ease both}
+.btn-prim{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--g2);color:white;
+  padding:.85rem 2rem;border-radius:50px;
+  font-weight:500;font-size:.9rem;text-decoration:none;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(45,90,39,.3)
+}
+.btn-prim:hover{background:var(--g1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,90,39,.4)}
+.btn-sec{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:var(--g2);
+  padding:.85rem 2rem;border-radius:50px;
+  font-weight:500;font-size:.9rem;text-decoration:none;
+  border:1.5px solid var(--g3);transition:all .2s
+}
+.btn-sec:hover{background:var(--gpale)}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;animation:fadeUp .7s .25s ease both}
+.hstat{border-left:2px solid var(--g4);padding-left:.9rem}
+.hstat-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--g2);line-height:1}
+.hstat-label{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+
+/* hero right: plant collage */
+.hero-right{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  gap:12px;height:520px;
+  animation:fadeUp .8s .15s ease both
+}
+.hero-plant-card{
+  border-radius:20px;overflow:hidden;position:relative;
+  background:var(--gpale);border:1px solid var(--border)
+}
+.hero-plant-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.hero-plant-card:hover img{transform:scale(1.05)}
+.hero-plant-card.big{grid-row:span 2;border-radius:24px}
+.plant-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(10,40,18,.7));
+  padding:1rem;color:white
+}
+.plant-overlay-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600}
+.plant-overlay-latin{font-size:.7rem;opacity:.75;font-style:italic}
+/* Product badge floating */
+.hero-badge{
+  position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+  background:white;border:1px solid var(--border);
+  border-radius:16px;padding:.7rem 1.2rem;
+  box-shadow:0 8px 28px rgba(0,0,0,.1);
+  display:flex;align-items:center;gap:.6rem;
+  white-space:nowrap;z-index:2
+}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--g4);flex-shrink:0}
+.badge-text{font-size:.78rem;font-weight:500;color:var(--text)}
+
+/* ── VIDEO PITCH ── */
+#pitch{
+  background:var(--g1);
+  padding:5rem 3rem;
+  position:relative;overflow:hidden
+}
+#pitch::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 30% 50%, rgba(74,140,63,.2) 0%, transparent 60%);
+  pointer-events:none
+}
+.pitch-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.pitch-text .section-tag-dark{
+  display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;border:1px solid rgba(255,255,255,.15)
+}
+.pitch-text h2{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:white;line-height:1.2;margin-bottom:1rem}
+.pitch-text p{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:1.5rem}
+.pitch-features{display:flex;flex-direction:column;gap:.7rem}
+.pf-item{display:flex;align-items:center;gap:.7rem;font-size:.85rem;color:rgba(255,255,255,.8)}
+.pf-dot{width:6px;height:6px;border-radius:50%;background:var(--g4);flex-shrink:0}
+.video-wrap{
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+  background:#000;
+  border:2px solid rgba(255,255,255,.1);
+  position:relative
+}
+.video-wrap video{width:100%;display:block;max-height:480px;object-fit:cover}
+.video-label{
+  position:absolute;top:12px;left:12px;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+  color:white;font-size:.72rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
+  padding:.3rem .8rem;border-radius:20px;
+  border:1px solid rgba(255,255,255,.15)
+}
+
+/* ── SECTION COMMONS ── */
+section{padding:5rem 3rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{
+  display:inline-block;background:var(--gpale);color:var(--g2);
+  font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  padding:.3rem .9rem;border-radius:20px;margin-bottom:.9rem;border:1px solid var(--border)
+}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--g1);margin-bottom:.7rem;line-height:1.2}
+.section-sub{font-size:.95rem;color:var(--soft);line-height:1.75;max-width:560px}
+
+/* ── QUÉ ES ── */
+#que-es{background:var(--white)}
+.que-es-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.que-es-visual{position:relative}
+.product-showcase{
+  background:linear-gradient(145deg,var(--gpale) 0%,#d4eecc 100%);
+  border-radius:28px;padding:2.5rem;
+  border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:1.2rem;
+  position:relative;overflow:hidden
+}
+.product-showcase::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(107,184,92,.15)
+}
+.product-big-emoji{font-size:5rem;line-height:1;position:relative;z-index:1}
+.product-showcase-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--g1);text-align:center}
+.product-showcase-desc{font-size:.83rem;color:var(--soft);text-align:center;line-height:1.6;max-width:240px}
+.showcase-pills{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.3rem}
+.spill{font-size:.7rem;font-weight:500;padding:.25rem .7rem;border-radius:20px}
+.sp-green{background:var(--gpale);color:var(--g2);border:1px solid var(--border)}
+.sp-gold{background:var(--goldpale);color:var(--gold);border:1px solid #f0d890}
+.que-es-feats{display:flex;flex-direction:column;gap:1rem}
+.qef{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.1rem 1.3rem;
+  background:var(--gmist);border:1px solid var(--border);border-radius:14px;
+  opacity:0;transform:translateX(24px);transition:opacity .5s,transform .5s
+}
+.qef.vis{opacity:1;transform:translateX(0)}
+.qef-icon{width:44px;height:44px;border-radius:12px;background:var(--gpale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.qef h4{font-size:.92rem;font-weight:500;color:var(--g1);margin-bottom:.2rem}
+.qef p{font-size:.8rem;color:var(--soft);line-height:1.5}
+
+/* ── PLANTAS ── */
+#plantas{background:var(--cream)}
+.plantas-intro{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;margin-bottom:2.5rem}
+.plants-tabs{display:flex;gap:.6rem;flex-wrap:wrap}
+.ptab{
+  padding:.4rem 1rem;border-radius:50px;font-size:.78rem;font-weight:500;cursor:pointer;
+  border:1.5px solid var(--border);background:var(--white);color:var(--soft);transition:all .2s
+}
+.ptab.on{background:var(--g2);color:white;border-color:var(--g2)}
+
+.plants-showcase{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:start}
+.plant-hero-card{
+  border-radius:24px;overflow:hidden;
+  background:var(--white);border:1px solid var(--border);
+  box-shadow:0 8px 32px rgba(26,60,42,.08)
+}
+.phc-image{
+  height:280px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.phc-image-bg{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9rem;
+  transition:all .5s
+}
+.phc-gradient{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--white))}
+.phc-body{padding:1.5rem 1.8rem 1.8rem}
+.phc-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--g1)}
+.phc-latin{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1rem}
+.phc-benefits{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.phc-benefit{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:var(--soft);line-height:1.4}
+.phc-benefit-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:1px}
+.phc-desc{font-size:.82rem;color:var(--soft);line-height:1.65;padding-top:1rem;border-top:1px solid var(--border)}
+
+.plant-info-stack{display:flex;flex-direction:column;gap:1rem}
+.pis-card{
+  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:1.2rem 1.4rem;cursor:pointer;transition:all .25s;
+  opacity:0;transform:translateY(16px);transition:opacity .4s,transform .4s,box-shadow .25s,border-color .25s
+}
+.pis-card.vis{opacity:1;transform:translateY(0)}
+.pis-card:hover,.pis-card.sel{border-color:var(--g3);box-shadow:0 4px 20px rgba(45,90,39,.1)}
+.pis-card.sel{background:var(--gmist)}
+.pis-top{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem}
+.pis-emoji{font-size:1.6rem}
+.pis-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g1)}
+.pis-latin{font-size:.7rem;color:var(--muted);font-style:italic}
+.pis-pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.6rem}
+.pis-pill{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:20px}
+.pis-mini-desc{font-size:.78rem;color:var(--soft);line-height:1.5}
+
+/* ── INSTRUCCIONES ── */
+#instrucciones{
+  background:var(--g1);
+  position:relative;overflow:hidden
+}
+#instrucciones::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 80% 20%,rgba(74,140,63,.25),transparent 55%),
+    radial-gradient(ellipse 40% 50% at 15% 80%,rgba(107,184,92,.15),transparent 50%);
+  pointer-events:none
+}
+#instrucciones .section-tag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.15)}
+#instrucciones .section-title{color:white}
+#instrucciones .section-sub{color:rgba(255,255,255,.6)}
+.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.5rem;position:relative}
+.steps-row::before{
+  content:'';position:absolute;top:42px;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(107,184,92,.4) 20%,rgba(107,184,92,.4) 80%,transparent 100%);
+  pointer-events:none
+}
+.step-c{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;padding:1.6rem 1.2rem 1.4rem;text-align:center;
+  opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;
+  position:relative;z-index:1
+}
+.step-c.vis{opacity:1;transform:translateY(0)}
+.step-c:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.step-n{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--g3);color:white;
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .9rem
+}
+.step-ico{font-size:2rem;margin-bottom:.7rem}
+.step-t{font-size:.92rem;font-weight:500;color:white;margin-bottom:.35rem}
+.step-d{font-size:.78rem;color:rgba(255,255,255,.58);line-height:1.55}
+.step-ti{
+  display:inline-block;margin-top:.7rem;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
+  font-size:.68rem;padding:.2rem .7rem;border-radius:10px
+}
+.warn-box{
+  margin-top:2.2rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:1.2rem 1.5rem;
+  display:flex;gap:1rem;align-items:flex-start
+}
+.warn-ico{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.warn-txt{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.65}
+.warn-txt strong{color:rgba(255,255,255,.9)}
+
+/* ── BIENESTAR DIGITAL ── */
+#bienestar{background:var(--white)}
+.bienestar-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
+.breath-box{
+  background:var(--gmist);border:1px solid var(--border);
+  border-radius:24px;padding:2.5rem;text-align:center
+}
+.breath-ring-wrap{position:relative;display:inline-block;margin-bottom:1.5rem}
+.br-outer{
+  width:160px;height:160px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  position:relative
+}
+.br-track{
+  position:absolute;inset:-10px;border-radius:50%;
+  border:3px solid transparent;
+  border-top-color:var(--g3);border-right-color:var(--g3);
+  transition:transform 4s ease-in-out
+}
+.br-inner{
+  width:120px;height:120px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gpale),#c0e0b0);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;
+  transition:transform 4s ease-in-out
+}
+.breath-lbl{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--g1);margin-bottom:.3rem}
+.breath-ph{font-size:.82rem;color:var(--soft);margin-bottom:1.2rem;min-height:1.2rem}
+.breath-btn{
+  background:var(--g2);color:white;border:none;border-radius:50px;
+  padding:.75rem 2.2rem;font-size:.88rem;font-weight:500;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:background .2s,transform .2s
+}
+.breath-btn:hover{background:var(--g1);transform:translateY(-1px)}
+.digi-list{display:flex;flex-direction:column;gap:1rem}
+.digi-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.1rem 1.3rem;border:1px solid var(--border);border-radius:14px;background:var(--cream);
+  opacity:0;transform:translateX(20px);transition:opacity .5s,transform .5s
+}
+.digi-item.vis{opacity:1;transform:translateX(0)}
+.digi-num{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--gpale);color:var(--g2);
+  font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0
+}
+.digi-item h4{font-size:.88rem;font-weight:500;color:var(--g1);margin-bottom:.2rem}
+.digi-item p{font-size:.78rem;color:var(--soft);line-height:1.5}
+
+/* ── QR ── */
+#qr{
+  background:linear-gradient(135deg,var(--g1) 0%,#0D2E1A 100%);
+  position:relative;overflow:hidden
+}
+#qr::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 70% at 70% 50%,rgba(74,140,63,.2),transparent 60%);
+  pointer-events:none
+}
+.qr-layout{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:5rem;flex-wrap:wrap;position:relative;z-index:1}
+.qr-card{
+  background:white;border-radius:24px;padding:2rem;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  flex-shrink:0
+}
+.qr-card img.logo-small{height:36px;width:auto}
+.qr-card img.qr-img{width:200px;height:200px;border-radius:8px;border:1px solid var(--border)}
+.qr-url-label{font-size:.7rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.qr-url{font-size:.85rem;font-weight:500;color:var(--g2)}
+.qr-text{max-width:400px}
+.qr-text h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:white;line-height:1.2;margin-bottom:.8rem}
+.qr-text p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1.5rem}
+.qr-steps{display:flex;flex-direction:column;gap:.55rem}
+.qr-step{display:flex;align-items:center;gap:.75rem;font-size:.84rem;color:rgba(255,255,255,.8)}
+.qr-sn{width:26px;height:26px;border-radius:50%;background:var(--g3);color:white;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ── CONTACTO ── */
+#contacto{background:var(--cream)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;align-items:start}
+.social-list{display:flex;flex-direction:column;gap:.9rem}
+.sc{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:1rem 1.3rem;background:var(--white);border:1px solid var(--border);border-radius:14px;
+  text-decoration:none;color:var(--text);transition:transform .2s,box-shadow .2s,border-color .2s
+}
+.sc:hover{transform:translateX(5px);box-shadow:0 4px 16px rgba(26,60,42,.09);border-color:var(--g3)}
+.sc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.sc h4{font-size:.88rem;font-weight:500;color:var(--g1)}
+.sc p{font-size:.76rem;color:var(--muted)}
+.cform{display:flex;flex-direction:column;gap:.85rem}
+.cform h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--g1);margin-bottom:.2rem}
+.cform input,.cform textarea{
+  width:100%;padding:.75rem 1rem;
+  border:1px solid var(--border);border-radius:10px;
+  background:var(--white);color:var(--text);
+  font-family:'DM Sans',sans-serif;font-size:.87rem;
+  transition:border-color .2s,box-shadow .2s;resize:vertical
+}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--g3);box-shadow:0 0 0 3px var(--gpale)}
+.cform textarea{min-height:96px}
+.cform-btn{
+  background:var(--g2);color:white;border:none;border-radius:50px;
+  padding:.8rem 2rem;font-size:.9rem;font-weight:500;cursor:pointer;width:100%;
+  font-family:'DM Sans',sans-serif;transition:background .2s,transform .2s
+}
+.cform-btn:hover{background:var(--g1);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--g1);
+  padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem
+}
+.footer-brand{display:flex;align-items:center;gap:.9rem}
+.footer-brand img{height:36px;width:auto;filter:brightness(0) invert(1);opacity:.85}
+.footer-brand-text{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5}
+.footer-brand-text strong{color:rgba(255,255,255,.8);display:block;margin-bottom:.1rem}
+.footer-warn{font-size:.72rem;color:rgba(255,255,255,.35);max-width:380px;line-height:1.5;text-align:right}
+
+/* ── ANIM ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(5deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fade-in.vis{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  nav{padding:.8rem 1.2rem}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:5rem 1.2rem 2.5rem}
+  .hero-right{display:none}
+  .hero-left{padding-right:0;text-align:center}
+  .hero-stats{justify-content:center}
+  .hero-actions{justify-content:center}
+  section{padding:3.5rem 1.2rem}
+  .pitch-inner,.que-es-grid,.plants-showcase,.bienestar-grid,.contact-grid{grid-template-columns:1fr}
+  .steps-row{grid-template-columns:1fr 1fr}
+  .steps-row::before{display:none}
+  .plantas-intro{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+  .footer-warn{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero"><img src="logo_vitalis.jpg" alt="Vitalis Digest" style="height:46px;width:auto;border-radius:4px"></a>
+  <ul class="nav-links">
+    <li><a href="#que-es">¿Qué es?</a></li>
+    <li><a href="#plantas">Plantas</a></li>
+    <li><a href="#instrucciones">Uso</a></li>
+    <li><a href="#bienestar">Bienestar</a></li>
+    <li><a href="#qr">Plataforma</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-art"></div>
+  <div class="hero-leaf-deco hld1"></div>
+  <div class="hero-leaf-deco hld2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">🌿 Bienestar digestivo natural · Bogotá, Colombia</div>
+    <img src="logo_vitalis.jpg" alt="Vitalis Digest Logo" class="hero-logo-hero" style="border-radius:8px">
+    <h1 class="hero-title">Bienestar que se<br>siente desde <em>adentro.</em></h1>
+    <p class="hero-sub">La primera banda térmica abdominal natural de Colombia,<br><strong>con plataforma digital de acompañamiento incluida.</strong></p>
+    <div class="hero-actions">
+      <a href="#pitch" class="btn-prim">▶ Ver nuestro pitch</a>
+      <a href="#plantas" class="btn-sec">🌿 Conoce las plantas</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-label">Natural · Sin químicos</div></div>
+      <div class="hstat"><div class="hstat-num">3</div><div class="hstat-label">Plantas medicinales</div></div>
+      <div class="hstat"><div class="hstat-num">20–30'</div><div class="hstat-label">Alivio activo</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Manzanilla -->
+    <div class="hero-plant-card big">
+      <div style="width:100%;height:100%;background:linear-gradient(160deg,#f5f0d0 0%,#e8d870 40%,#c8a820 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="font-size:8rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.2));animation:float 5s ease-in-out infinite">🌼</div>
+        <div class="plant-overlay">
+          <div class="plant-overlay-name">Manzanilla</div>
+          <div class="plant-overlay-latin">Matricaria chamomilla</div>
+        </div>
+      </div>
+    </div>
+    <!-- Jengibre -->
+    <div class="hero-plant-card">
+      <div style="width:100%;height:100%;background:linear-gradient(160deg,#f5e8cc 0%,#d4901a 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="font-size:5rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2));animation:float 5s 1s ease-in-out infinite">🫚</div>
+        <div class="plant-overlay">
+          <div class="plant-overlay-name">Jengibre</div>
+          <div class="plant-overlay-latin">Zingiber officinale</div>
+        </div>
+      </div>
+    </div>
+    <!-- Menta -->
+    <div class="hero-plant-card">
+      <div style="width:100%;height:100%;background:linear-gradient(160deg,#d4f0e0 0%,#2D9E60 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="font-size:5rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15));animation:float 5s 2s ease-in-out infinite">🌿</div>
+        <div class="plant-overlay">
+          <div class="plant-overlay-name">Menta</div>
+          <div class="plant-overlay-latin">Mentha piperita</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PITCH VIDEO -->
+<section id="pitch">
+  <div class="pitch-inner">
+    <div class="pitch-text">
+      <div class="section-tag-dark">Nuestro pitch</div>
+      <h2>Conoce a las mentes detrás de Vitalis Digest</h2>
+      <p>Un proyecto nacido en la Universidad Militar Nueva Granada, impulsado por cuatro estudiantes con una visión clara: resolver el problema digestivo del bogotano moderno con naturaleza e innovación.</p>
+      <div class="pitch-features">
+        <div class="pf-item"><div class="pf-dot"></div>Investigación de mercado con 200 encuestas en Bogotá</div>
+        <div class="pf-item"><div class="pf-dot"></div>Validación real del segmento 20–45 años estratos 3 y 4</div>
+        <div class="pf-item"><div class="pf-dot"></div>Modelo financiero con margen bruto del 61%</div>
+        <div class="pf-item"><div class="pf-dot"></div>Producto único: físico + digital integrado</div>
+      </div>
+    </div>
+    <div class="video-wrap">
+      <div class="video-label">🎬 Pitch Vitalis Digest · UMNG 2026</div>
+      <video controls poster="" preload="metadata" style="width:100%;display:block;max-height:480px;object-fit:cover;border-radius:18px">
+        <source src="pitch_vitalis.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ ES -->
+<section id="que-es">
+  <div class="container">
+    <div class="section-tag fade-in">El producto</div>
+    <h2 class="section-title fade-in">¿Qué es Vitalis Digest?</h2>
+    <p class="section-sub fade-in">Una banda térmica abdominal 100% natural que combina calor medicinal, aromas de plantas y tecnología digital en un solo producto.</p>
+    <div class="que-es-grid">
+      <div class="que-es-visual fade-in">
+        <div class="product-showcase">
+          <div class="product-big-emoji">🩹</div>
+          <div class="product-showcase-title">Banda Térmica Abdominal Natural</div>
+          <div class="product-showcase-desc">Tela ergonómica suave con relleno activo de manzanilla, jengibre y menta. Empaque ecológico individual con QR digital.</div>
+          <div class="showcase-pills">
+            <span class="spill sp-green">Uso externo</span>
+            <span class="spill sp-green">No invasivo</span>
+            <span class="spill sp-green">Reutilizable</span>
+            <span class="spill sp-gold">Eco-friendly</span>
+            <span class="spill sp-green">+ QR digital</span>
+          </div>
+        </div>
+      </div>
+      <div class="que-es-feats">
+        <div class="qef"><div class="qef-icon">🌡️</div><div><h4>Calor terapéutico activo</h4><p>20 a 30 minutos de calor suave sobre el abdomen que activa el bienestar digestivo sin químicos ni artificiales.</p></div></div>
+        <div class="qef"><div class="qef-icon">🌿</div><div><h4>Aromas medicinales naturales</h4><p>Manzanilla, jengibre y menta liberan sus aceites esenciales con el calor, complementando el alivio sensorial.</p></div></div>
+        <div class="qef"><div class="qef-icon">📱</div><div><h4>Plataforma digital incluida</h4><p>QR en el empaque con acceso directo a respiración guiada, autocuidado y educación digestiva preventiva.</p></div></div>
+        <div class="qef"><div class="qef-icon">🔁</div><div><h4>Diseño ergonómico reutilizable</h4><p>Se adapta a diferentes tallas. Su estructura textil y relleno natural mantienen sus propiedades en múltiples usos.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANTAS -->
+<section id="plantas">
+  <div class="container">
+    <div class="plantas-intro">
+      <div>
+        <div class="section-tag fade-in">Ingredientes naturales</div>
+        <h2 class="section-title fade-in">Tres plantas, un propósito</h2>
+        <p class="section-sub fade-in">Seleccionadas por sus propiedades reconocidas. Cultivadas con trazabilidad sostenible. Cada una cumple un rol único en la fórmula.</p>
+      </div>
+      <div class="plants-tabs fade-in">
+        <button class="ptab on" onclick="selPlant(0,this)">🌼 Manzanilla</button>
+        <button class="ptab" onclick="selPlant(1,this)">🫚 Jengibre</button>
+        <button class="ptab" onclick="selPlant(2,this)">🌿 Menta</button>
+      </div>
+    </div>
+
+    <div class="plants-showcase">
+      <div class="plant-hero-card fade-in" id="phc">
+        <div class="phc-image">
+          <div class="phc-image-bg" id="phcBg" style="background:linear-gradient(160deg,#fdf8d0,#f0d040)">🌼</div>
+          <div class="phc-gradient"></div>
+        </div>
+        <div class="phc-body">
+          <div class="phc-name" id="phcName">Manzanilla</div>
+          <div class="phc-latin" id="phcLatin">Matricaria chamomilla</div>
+          <div class="phc-benefits" id="phcBenefits">
+            <div class="phc-benefit"><div class="phc-benefit-icon" style="background:#fffde7;color:#8B6B00">🌼</div>Acción antiespasmódica: relaja la musculatura del tracto digestivo</div>
+            <div class="phc-benefit"><div class="phc-benefit-icon" style="background:#fffde7;color:#8B6B00">💛</div>Antiinflamatoria natural: reduce la inflamación abdominal</div>
+            <div class="phc-benefit"><div class="phc-benefit-icon" style="background:#fffde7;color:#8B6B00">😌</div>Efecto relajante: alivia tensión y estrés acumulado</div>
+            <div class="phc-benefit"><div class="phc-benefit-icon" style="background:#fffde7;color:#8B6B00">🫧</div>Carminativa: ayuda a expulsar gases intestinales</div>
+          </div>
+          <div class="phc-desc" id="phcDesc">La manzanilla es una de las plantas medicinales más estudiadas del mundo. Sus flavonoides actúan como relajante natural del tracto digestivo, ayudando a reducir espasmos, cólicos, gases y la sensación de pesadez abdominal. Su aroma suave y cálido potencia el efecto térmico de la banda, promoviendo la relajación integral del sistema digestivo.</div>
+        </div>
+      </div>
+
+      <div class="plant-info-stack">
+        <div class="pis-card sel" id="pc0" onclick="selPlant(0,null)">
+          <div class="pis-top"><div class="pis-emoji">🌼</div><div><div class="pis-name">Manzanilla</div><div class="pis-latin">Matricaria chamomilla</div></div></div>
+          <div class="pis-pills">
+            <span class="pis-pill" style="background:#fffde7;color:#8B6B00">Antiespasmódica</span>
+            <span class="pis-pill" style="background:#fffde7;color:#8B6B00">Antiinflamatoria</span>
+            <span class="pis-pill" style="background:#fffde7;color:#8B6B00">Relajante</span>
+            <span class="pis-pill" style="background:#fffde7;color:#8B6B00">Carminativa</span>
+          </div>
+          <div class="pis-mini-desc">Relaja la musculatura digestiva y alivia espasmos, gases y cólicos abdominales.</div>
+        </div>
+        <div class="pis-card" id="pc1" onclick="selPlant(1,null)">
+          <div class="pis-top"><div class="pis-emoji">🫚</div><div><div class="pis-name">Jengibre</div><div class="pis-latin">Zingiber officinale</div></div></div>
+          <div class="pis-pills">
+            <span class="pis-pill" style="background:#fff3e0;color:#8B4500">Termogénico</span>
+            <span class="pis-pill" style="background:#fff3e0;color:#8B4500">Antiemético</span>
+            <span class="pis-pill" style="background:#fff3e0;color:#8B4500">Digestivo</span>
+            <span class="pis-pill" style="background:#fff3e0;color:#8B4500">Estimulante</span>
+          </div>
+          <div class="pis-mini-desc">Potencia el calor y estimula la motilidad gástrica. Reduce náuseas y malestar digestivo.</div>
+        </div>
+        <div class="pis-card" id="pc2" onclick="selPlant(2,null)">
+          <div class="pis-top"><div class="pis-emoji">🌿</div><div><div class="pis-name">Menta</div><div class="pis-latin">Mentha piperita</div></div></div>
+          <div class="pis-pills">
+            <span class="pis-pill" style="background:#e1f5ee;color:#0F6E56">Refrescante</span>
+            <span class="pis-pill" style="background:#e1f5ee;color:#0F6E56">Antiespasmódica</span>
+            <span class="pis-pill" style="background:#e1f5ee;color:#0F6E56">Carminativa</span>
+            <span class="pis-pill" style="background:#e1f5ee;color:#0F6E56">Descongestionante</span>
+          </div>
+          <div class="pis-mini-desc">El mentol relaja el músculo liso intestinal y crea sensación fresca complementaria al calor.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCCIONES -->
+<section id="instrucciones">
+  <div class="container">
+    <div class="section-tag">Modo de uso</div>
+    <h2 class="section-title">Cómo usar tu Vitalis Digest</h2>
+    <p class="section-sub">4 pasos simples para una experiencia de bienestar completa. Sin complicaciones, sin efectos secundarios.</p>
+    <div class="steps-row">
+      <div class="step-c"><div class="step-n">1</div><div class="step-ico">📦</div><div class="step-t">Abre el empaque</div><div class="step-d">Retira la banda de su empaque ecológico individual y verifica que el relleno esté distribuido uniformemente.</div><div class="step-ti">⏱ 30 segundos</div></div>
+      <div class="step-c"><div class="step-n">2</div><div class="step-ico">🌡️</div><div class="step-t">Activa el calor</div><div class="step-d">Agita suavemente entre tus manos por 10–15 segundos para activar los componentes térmicos naturales del relleno.</div><div class="step-ti">⏱ 15 segundos</div></div>
+      <div class="step-c"><div class="step-n">3</div><div class="step-ico">🫁</div><div class="step-t">Aplica en el abdomen</div><div class="step-d">Coloca directamente sobre la zona abdominal. Ajusta el cierre para un contacto cómodo, seguro y uniforme.</div><div class="step-ti">⏱ 20–30 minutos</div></div>
+      <div class="step-c"><div class="step-n">4</div><div class="step-ico">📱</div><div class="step-t">Escanea el QR</div><div class="step-d">Accede a tu sesión de respiración guiada y contenido exclusivo de bienestar mientras la banda actúa.</div><div class="step-ti">⏱ A tu ritmo</div></div>
+    </div>
+    <div class="warn-box">
+      <div class="warn-ico">⚠️</div>
+      <div class="warn-txt"><strong>Aviso importante:</strong> Vitalis Digest es un producto de uso externo enfocado en el bienestar preventivo y el autocuidado. <strong>No reemplaza diagnósticos médicos ni tratamientos farmacológicos.</strong> No aplicar sobre piel irritada o heridas. Si los síntomas persisten, consulta a tu médico. Mantener fuera del alcance de menores de 12 años.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BIENESTAR DIGITAL -->
+<section id="bienestar">
+  <div class="container">
+    <div class="section-tag fade-in">Plataforma digital</div>
+    <h2 class="section-title fade-in">Tu aliada digital de bienestar</h2>
+    <p class="section-sub fade-in">Incluida en cada producto vía QR. Sin descargas complicadas. Disponible desde el primer uso.</p>
+    <div class="bienestar-grid">
+      <div class="breath-box fade-in">
+        <div class="breath-ring-wrap">
+          <div class="br-outer"><div class="br-track" id="brTrack"></div><div class="br-inner" id="brInner">🌬️</div></div>
+        </div>
+        <div class="breath-lbl" id="brLbl">Respiración guiada</div>
+        <div class="breath-ph" id="brPh">Toca para comenzar</div>
+        <button class="breath-btn" id="brBtn" onclick="startBreath()">Iniciar ejercicio ▶</button>
+      </div>
+      <div class="digi-list">
+        <div class="digi-item"><div class="digi-num">1</div><div><h4>Respiración abdominal guiada</h4><p>Sesiones de 5–10 minutos de respiración diafragmática para complementar el efecto de la banda y reducir tensión.</p></div></div>
+        <div class="digi-item"><div class="digi-num">2</div><div><h4>Recomendaciones de autocuidado</h4><p>Guías de hábitos alimenticios, posturas y rutinas básicas para prevenir molestias digestivas en el día a día.</p></div></div>
+        <div class="digi-item"><div class="digi-num">3</div><div><h4>Educación en bienestar digestivo</h4><p>Contenido educativo accesible sobre el sistema digestivo, causas del malestar y cómo prevenirlo.</p></div></div>
+        <div class="digi-item"><div class="digi-num">4</div><div><h4>Seguimiento de bienestar personal</h4><p>Registra cómo te sientes antes y después de cada uso para detectar patrones y optimizar tu rutina.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QR -->
+<section id="qr">
+  <div class="container" style="text-align:center;margin-bottom:2.5rem;position:relative;z-index:1">
+    <div class="section-tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.15)">Acceso instantáneo</div>
+    <h2 class="section-title fade-in" style="color:white;">Escanea y empieza<br>tu bienestar ahora</h2>
+  </div>
+  <div class="qr-layout">
+    <div class="qr-card">
+      <img src="logo_vitalis.jpg" alt="Vitalis Digest" class="logo-small" style="border-radius:4px">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANwAAADcCAYAAAAbWs+BAAAAAklEQVR4AewaftIAAAXrSURBVO3BsZEcWw5FwTuINgYSHIJ9cAgSvOFSW6le/KhhoZvDk/n16zcBWGECsMYEYI0JwBoTgDUmAGtMANaYAKwxAVhjArDGBGCNCcAaE4A1JgBrTADWmACseembIl0/TdforkjXXV2jk0jXla7RUyJdJ12jK5Gun6ZrdJcJwBoTgDUmAGtMANaYAKwxAVjz0oO6Rp8o0vUuXaO7ukZXIl1/o67RJ4p0PcEEYI0JwBoTgDUmAGtMANaYAKwxAVjz0htFup7SNXpCpOuka/QOXaOTSNddXaN3iHQ9pWv0DiYAa0wA1pgArDEBWGMCsMYEYM1L+KMiXX+brhF2mACsMQFYYwKwxgRgjQnAGhOANSYAa17CH9U1uivSddI1eodI10nXCP+NCcAaE4A1JgBrTADWmACsMQFYYwKw5qU36hr9NJGup0S6rnSNTiJdd3WN3qFr9NOYAKwxAVhjArDGBGCNCcAaE4A1Lz0o0vWv6RqdRLqudI1OIl1P6BqdRLpOukZ3Rbr+JSYAa0wA1pgArDEBWGMCsMYEYI0JwJqXvqlrhD8j0vUOka6ndI3wfyYAa0wA1pgArDEBWGMCsMYEYM3Xr9/0DZGuK12jk0jXJ+oa3RXpOuka3RXpeoeu0V2Rrk/UNXoHE4A1JgBrTADWmACsMQFYYwKwxgRgzdev3/QNka4ndI3eJdJ1pWv0lEjXXV2jk0jXla7RSaTrpGt0V6TrStfoKZGuk67RE0wA1pgArDEBWGMCsMYEYI0JwBoTgDUvvVHX6K5I10nX6Eqk66RrdCXSddI1uqtrdBLpuhLpOukaXYl0vUvX6Eqk6zu6RndFuq50je4yAVhjArDGBGCNCcAaE4A1JgBrXnpQ1+iuSNdJ1+iurtG7RLqudI1OukZ3RbqudI2+I9L1hK7RU7pGJ5GuJ5gArDEBWGMCsMYEYI0JwBoTgDUmAGte+qEiXe8Q6TrpGl2JdJ10ja5Euu6KdH2iSNdJ1+gk0vVpTADWmACsMQFYYwKwxgRgjQnAmpceFOn6RF2jp0S6TiJdV7pGJ5GuK12jk0jXla7RSaTrrtfoJNJ10jW6Euk66Ro9wQRgjQnAGhOANSYAa0wA1pgArDEBWPP16zd9Q6TrStforkjX36hr9IkiXf+artGVSNddXaO7TADWmACsMQFYYwKwxgRgjQnAmpfeKNJ1pWt0Eum6q2t0V6TrJNJ1V9foJNJ1pWt00jW6Euk66RrdFel6Stforq7RSaTrCSYAa0wA1pgArDEBWGMCsMYEYI0JwJqXPlSk6zu6RlciXe/SNXpCpOuka3Sla3QS6fobRbqudI1OukZPMAFYYwKwxgRgjQnAGhOANSYAa0wA1nz9+k34zyJdT+ka3RXpOukaXYl0fUfX6AmRru/oGn0aE4A1JgBrTADWmACsMQFYYwKw5qVvinT9NF2jK12jk0jXSdfoSqTrKZGuK12jk0jXXZGuk67RXV2jk0jXE7pGd5kArDEBWGMCsMYEYI0JwBoTgDUmAGteelDX6BNFuu6KdJ10jZ7SNfrbdI2eEuk66RrdFel6ggnAGhOANSYAa0wA1pgArDEBWPPSG0W6ntI1eodI11MiXZ8o0vUOXaOTSNeVrtFJ1+gJJgBrTADWmACsMQFYYwKwxgRgjQnAmpfwR3WNnhLputI1uivSddI1Ool03dU1uhLpOol03RXpuqtrdJcJwBoTgDUmAGtMANaYAKwxAVhjArDmJfxRka67ukYnXaMrka6TrtGVrtFJpOuka/SErtFJpOuurtFJpOsJJgBrTADWmACsMQFYYwKwxgRgzUtv1DX623SNTiJdJ12jK5Guk67Rla7RSaTrHSJd79I1+jQmAGtMANaYAKwxAVhjArDGBGCNCcCalx4U6fppIl3vEul6QtfoOyJdnyjS9WlMANaYAKwxAVhjArDGBGCNCcCar1+/CcAKE4A1JgBrTADWmACsMQFYYwKwxgRgjQnAGhOANSYAa0wA1pgArDEBWGMCsMYEYI0JwJqXsTmhoPoAAAAASUVORK5CYII=" alt="QR Code Vitalis Digest" class="qr-img">
+      <div class="qr-url-label">Plataforma digital</div>
+      <div class="qr-url">vitalisdigest.co</div>
+    </div>
+    <div class="qr-text">
+      <h2>Tu experiencia digital está a un escaneo de distancia</h2>
+      <p>Cada empaque Vitalis Digest incluye el código QR que da acceso inmediato a nuestra plataforma de bienestar. Sin apps, sin registros. Solo escanea y empieza.</p>
+      <div class="qr-steps">
+        <div class="qr-step"><div class="qr-sn">1</div>Abre la cámara de tu celular</div>
+        <div class="qr-step"><div class="qr-sn">2</div>Apunta al código QR del empaque</div>
+        <div class="qr-step"><div class="qr-sn">3</div>Toca el enlace que aparece en pantalla</div>
+        <div class="qr-step"><div class="qr-sn">4</div>Accede a tu sesión de bienestar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="section-tag fade-in">Contáctanos</div>
+    <h2 class="section-title fade-in">Estamos para ti</h2>
+    <p class="section-sub fade-in">¿Preguntas sobre el producto, pedidos o puntos de venta en Bogotá? Escríbenos.</p>
+    <div class="contact-grid">
+      <div class="social-list">
+        <a href="#" class="sc"><div class="sc-icon" style="background:#fce4ec">📸</div><div><h4>Instagram</h4><p>@vitalisdigest · Contenido de bienestar diario</p></div></a>
+        <a href="#" class="sc"><div class="sc-icon" style="background:#e8f4fd">🎵</div><div><h4>TikTok</h4><p>@vitalisdigest · Tips de autocuidado digestivo</p></div></a>
+        <a href="#" class="sc"><div class="sc-icon" style="background:var(--gpale)">🛍️</div><div><h4>Tiendas naturistas · Bogotá</h4><p>Sector Las Ferias y puntos de venta seleccionados</p></div></a>
+        <a href="#" class="sc"><div class="sc-icon" style="background:var(--goldpale)">📧</div><div><h4>Email</h4><p>hola@vitalisdigest.co</p></div></a>
+        <a href="#" class="sc"><div class="sc-icon" style="background:#e8f5e9">🟢</div><div><h4>WhatsApp</h4><p>+57 310 000 0000 · Atención inmediata</p></div></a>
+      </div>
+      <div class="cform">
+        <h3>Envíanos un mensaje</h3>
+        <input type="text" placeholder="Tu nombre completo">
+        <input type="email" placeholder="Correo electrónico">
+        <input type="text" placeholder="Asunto">
+        <textarea placeholder="¿En qué podemos ayudarte?"></textarea>
+        <button class="cform-btn" onclick="this.textContent='✅ ¡Mensaje enviado! Te contactamos pronto.'">Enviar mensaje</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo_vitalis.jpg" alt="Vitalis Digest">
+    <div class="footer-brand-text">
+      <strong>Vitalis Digest S.A.S.</strong>
+      "Bienestar que se siente desde adentro."<br>
+      Bogotá D.C., Colombia · 2026 · UMNG
+    </div>
+  </div>
+  <div class="footer-warn">Producto de uso externo enfocado en bienestar preventivo. No reemplaza diagnósticos médicos ni tratamientos farmacológicos.</div>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+
+// Intersection observer
+const io = new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('vis')),{threshold:.12});
+document.querySelectorAll('.qef,.step-c,.digi-item,.pis-card,.fade-in').forEach(el=>io.observe(el));
+document.querySelectorAll('.pis-card').forEach((c,i)=>c.style.transitionDelay=(i*.12)+'s');
+document.querySelectorAll('.step-c').forEach((c,i)=>c.style.transitionDelay=(i*.1)+'s');
+document.querySelectorAll('.digi-item').forEach((c,i)=>c.style.transitionDelay=(i*.1)+'s');
+document.querySelectorAll('.qef').forEach((c,i)=>c.style.transitionDelay=(i*.1)+'s');
+
+// Plants data
+const plants = [
+  {
+    name:'Manzanilla', latin:'Matricaria chamomilla', emoji:'🌼',
+    bg:'linear-gradient(160deg,#fdf8d0,#f0d040)',
+    benefits:[
+      {ico:'🌼',col:'#fffde7',tcol:'#8B6B00',txt:'Antiespasmódica: relaja la musculatura del tracto digestivo'},
+      {ico:'💛',col:'#fffde7',tcol:'#8B6B00',txt:'Antiinflamatoria natural: reduce la inflamación abdominal'},
+      {ico:'😌',col:'#fffde7',tcol:'#8B6B00',txt:'Efecto relajante: alivia tensión y estrés acumulado'},
+      {ico:'🫧',col:'#fffde7',tcol:'#8B6B00',txt:'Carminativa: ayuda a expulsar gases intestinales'},
+    ],
+    desc:'La manzanilla es una de las plantas medicinales más estudiadas del mundo. Sus flavonoides actúan como relajante natural del tracto digestivo, ayudando a reducir espasmos, cólicos, gases y pesadez abdominal. Su aroma suave y cálido potencia el efecto térmico de la banda, promoviendo la relajación integral del sistema digestivo.',
+  },
+  {
+    name:'Jengibre', latin:'Zingiber officinale', emoji:'🫚',
+    bg:'linear-gradient(160deg,#f5e8cc,#d4901a)',
+    benefits:[
+      {ico:'🔥',col:'#fff3e0',tcol:'#8B4500',txt:'Termogénico: potencia y prolonga el efecto del calor'},
+      {ico:'🤢',col:'#fff3e0',tcol:'#8B4500',txt:'Antiemético: reduce náuseas y malestar gástrico'},
+      {ico:'💪',col:'#fff3e0',tcol:'#8B4500',txt:'Estimula la motilidad gástrica y mejora la digestión'},
+      {ico:'⚡',col:'#fff3e0',tcol:'#8B4500',txt:'Gingeroles: acción antiinflamatoria sobre el intestino'},
+    ],
+    desc:'El jengibre potencia el efecto térmico de la banda gracias a sus propiedades termogénicas naturales. Sus gingeroles y shogaoles estimulan la motilidad gástrica, reducen las náuseas y mejoran la digestión general. Reconocido mundialmente como uno de los más efectivos para el malestar digestivo, actúa directamente sobre el tracto gastrointestinal reduciendo inflamación y dolor abdominal.',
+  },
+  {
+    name:'Menta', latin:'Mentha piperita', emoji:'🌿',
+    bg:'linear-gradient(160deg,#d4f0e0,#2D9E60)',
+    benefits:[
+      {ico:'❄️',col:'#e1f5ee',tcol:'#0F6E56',txt:'Refrescante: crea contraste sensorial con el calor'},
+      {ico:'🧘',col:'#e1f5ee',tcol:'#0F6E56',txt:'Antiespasmódica: relaja el músculo liso intestinal'},
+      {ico:'🌬️',col:'#e1f5ee',tcol:'#0F6E56',txt:'Carminativa: alivia la distensión y los gases'},
+      {ico:'✨',col:'#e1f5ee',tcol:'#0F6E56',txt:'Mentol: activa receptores de frescura y calma'},
+    ],
+    desc:'El mentol de la menta actúa como relajante natural del músculo liso intestinal, aliviando espasmos y reduciendo la distensión abdominal. Su aroma fresco y penetrante activa receptores de frescura que contrastan y complementan el calor de la banda, creando una experiencia sensorial completa y envolvente. Sus propiedades carminativas ayudan a expulsar los gases intestinales eficazmente.',
+  },
+];
+
+let curPlant=0;
+function selPlant(idx,tabEl){
+  curPlant=idx;
+  const p=plants[idx];
+  // update hero card
+  document.getElementById('phcBg').textContent=p.emoji;
+  document.getElementById('phcBg').style.background=p.bg;
+  document.getElementById('phcName').textContent=p.name;
+  document.getElementById('phcLatin').textContent=p.latin;
+  document.getElementById('phcDesc').textContent=p.desc;
+  const bCont=document.getElementById('phcBenefits');
+  bCont.innerHTML=p.benefits.map(b=>`<div class="phc-benefit"><div class="phc-benefit-icon" style="background:${b.col};color:${b.tcol}">${b.ico}</div>${b.txt}</div>`).join('');
+  // update sidebar
+  document.querySelectorAll('.pis-card').forEach((c,i)=>c.classList.toggle('sel',i===idx));
+  // update tabs
+  if(tabEl) document.querySelectorAll('.ptab').forEach((t,i)=>{t.classList.toggle('on',t===tabEl)});
+  else document.querySelectorAll('.ptab').forEach((t,i)=>t.classList.toggle('on',i===idx));
+}
+
+// Breathing
+let bRunning=false,bInt=null,bIdx=0,bTimer=0;
+const bPhases=[
+  {lbl:'Inhala',dur:4,emo:'🌬️',ph:'Respira profundo por la nariz... 1, 2, 3, 4'},
+  {lbl:'Retén',dur:4,emo:'💫',ph:'Mantén el aire... 1, 2, 3, 4'},
+  {lbl:'Exhala',dur:6,emo:'😮‍💨',ph:'Suelta lentamente por la boca... 1, 2, 3, 4, 5, 6'},
+  {lbl:'Pausa',dur:2,emo:'🧘',ph:'Descansa... 1, 2'},
+];
+function startBreath(){
+  if(bRunning){
+    clearInterval(bInt);bRunning=false;
+    document.getElementById('brBtn').textContent='Iniciar ejercicio ▶';
+    document.getElementById('brLbl').textContent='Respiración guiada';
+    document.getElementById('brPh').textContent='Toca para comenzar';
+    document.getElementById('brInner').style.transform='scale(1)';
+    return;
+  }
+  bRunning=true;bIdx=0;bTimer=0;
+  document.getElementById('brBtn').textContent='⏹ Detener';
+  runBPhase();
+  bInt=setInterval(()=>{bTimer++;if(bTimer>=bPhases[bIdx].dur){bTimer=0;bIdx=(bIdx+1)%bPhases.length;runBPhase();}},1000);
+}
+function runBPhase(){
+  const p=bPhases[bIdx];
+  document.getElementById('brLbl').textContent=p.lbl;
+  document.getElementById('brPh').textContent=p.ph;
+  document.getElementById('brInner').textContent=p.emo;
+  const s=bIdx===0?'scale(1.22)':bIdx===2?'scale(0.82)':'scale(1)';
+  document.getElementById('brInner').style.transform=s;
+  document.getElementById('brInner').style.transition=`transform ${p.dur}s ease-in-out`;
+  document.getElementById('brTrack').style.transform=`rotate(${bIdx*90}deg)`;
+  document.getElementById('brTrack').style.transition=`transform ${p.dur}s ease-in-out`;
+}
+</script>
+</body>
+</html>
