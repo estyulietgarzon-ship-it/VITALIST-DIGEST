@@ -577,8 +577,73 @@ footer{
     <p class="section-sub fade-in">Una banda térmica abdominal 100% natural que combina calor medicinal, aromas de plantas y tecnología digital en un solo producto.</p>
     <div class="que-es-grid">
       <div class="que-es-visual fade-in">
-        <div class="product-showcase">
-          <div class="product-big-emoji">🩹</div>
+        <div class="product-showcase" style="background:linear-gradient(145deg,#FDF6E3 0%,#F5E6C0 100%);padding:2rem 1.5rem 1.8rem;overflow:visible">
+          <!-- Glow rings behind band -->
+          <div style="position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem">
+            <div style="position:absolute;width:320px;height:180px;border-radius:50%;background:radial-gradient(ellipse,rgba(200,134,10,.18) 0%,transparent 70%);animation:pulseGlow 2.5s ease-in-out infinite"></div>
+            <div style="position:absolute;width:280px;height:150px;border-radius:50%;background:radial-gradient(ellipse,rgba(200,134,10,.12) 0%,transparent 65%);animation:pulseGlow 2.5s .5s ease-in-out infinite"></div>
+            <!-- SVG Banda realista -->
+            <svg viewBox="0 0 340 180" width="320" height="170" style="position:relative;z-index:1;filter:drop-shadow(0 12px 28px rgba(120,80,10,.25))">
+              <!-- Sombra banda -->
+              <ellipse cx="170" cy="168" rx="130" ry="10" fill="rgba(100,60,0,.15)"/>
+              <!-- Cuerpo principal banda - beige acolchado -->
+              <rect x="20" y="40" width="300" height="110" rx="18" fill="#E8D5A0"/>
+              <!-- Textura acolchada - líneas horizontales -->
+              <rect x="20" y="40" width="300" height="110" rx="18" fill="url(#quilt)"/>
+              <!-- Borde superior e inferior más oscuro -->
+              <rect x="20" y="40" width="300" height="18" rx="9" fill="#D4BC80"/>
+              <rect x="20" y="132" width="300" height="18" rx="9" fill="#D4BC80"/>
+              <!-- Costuras laterales -->
+              <rect x="20" y="40" width="22" height="110" rx="8" fill="#C8A860"/>
+              <rect x="298" y="40" width="22" height="110" rx="8" fill="#C8A860"/>
+              <!-- Velcro derecho -->
+              <rect x="298" y="55" width="22" height="30" rx="4" fill="#B8985A"/>
+              <rect x="298" y="95" width="22" height="30" rx="4" fill="#B8985A"/>
+              <!-- Líneas de textura velcro -->
+              <line x1="302" y1="60" x2="316" y2="60" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <line x1="302" y1="65" x2="316" y2="65" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <line x1="302" y1="70" x2="316" y2="70" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <line x1="302" y1="100" x2="316" y2="100" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <line x1="302" y1="105" x2="316" y2="105" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <line x1="302" y1="110" x2="316" y2="110" stroke="#A07840" stroke-width="1.2" stroke-dasharray="2,2"/>
+              <!-- Líneas de costuras horizontales banda -->
+              <line x1="42" y1="70" x2="298" y2="70" stroke="rgba(150,110,40,.2)" stroke-width="1"/>
+              <line x1="42" y1="95" x2="298" y2="95" stroke="rgba(150,110,40,.2)" stroke-width="1"/>
+              <line x1="42" y1="120" x2="298" y2="120" stroke="rgba(150,110,40,.2)" stroke-width="1"/>
+              <!-- Parche logo central -->
+              <rect x="110" y="55" width="120" height="75" rx="10" fill="#F5EDD0" stroke="#C8A860" stroke-width="1.5"/>
+              <rect x="113" y="58" width="114" height="69" rx="8" fill="#FDFAF0"/>
+              <!-- Logo simplificado dentro del parche -->
+              <ellipse cx="170" cy="78" rx="18" ry="20" fill="none" stroke="#2D5A27" stroke-width="2"/>
+              <ellipse cx="170" cy="78" rx="18" ry="20" fill="none" stroke="#C8860A" stroke-width="1" stroke-dasharray="3,28" stroke-dashoffset="0"/>
+              <!-- Hojas -->
+              <path d="M166 66 C164 62 170 60 172 64 C170 61 174 59 175 63 Z" fill="#2D5A27"/>
+              <path d="M168 67 C166 63 172 61 173 65 Z" fill="#4A8C3F"/>
+              <!-- Olas -->
+              <path d="M155 74 Q160 71 165 74 Q170 77 175 74 Q180 71 185 74" fill="none" stroke="#C8860A" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M155 79 Q160 76 165 79 Q170 82 175 79 Q180 76 185 79" fill="none" stroke="#2D5A27" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M155 84 Q160 81 165 84 Q170 87 175 84 Q180 81 185 84" fill="none" stroke="#2D5A27" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Texto VITALIS -->
+              <text x="170" y="101" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="9" font-weight="900" fill="#2D5A27" letter-spacing="1">VITALIS</text>
+              <!-- Líneas decorativas -->
+              <line x1="122" y1="105" x2="147" y2="105" stroke="#C8860A" stroke-width="0.8"/>
+              <line x1="193" y1="105" x2="218" y2="105" stroke="#C8860A" stroke-width="0.8"/>
+              <!-- Texto DIGEST -->
+              <text x="170" y="113" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="700" fill="#C8860A" letter-spacing="3">DIGEST</text>
+              <!-- Destellos dorados alrededor -->
+              <circle cx="55" cy="60" r="3" fill="rgba(200,134,10,.5)" style="animation:sparkle 2s .2s infinite"/>
+              <circle cx="285" cy="60" r="3" fill="rgba(200,134,10,.5)" style="animation:sparkle 2s .7s infinite"/>
+              <circle cx="55" cy="130" r="2.5" fill="rgba(200,134,10,.4)" style="animation:sparkle 2s 1s infinite"/>
+              <circle cx="285" cy="130" r="2.5" fill="rgba(200,134,10,.4)" style="animation:sparkle 2s 1.5s infinite"/>
+              <circle cx="170" cy="38" r="2" fill="rgba(200,134,10,.6)" style="animation:sparkle 2s .4s infinite"/>
+              <defs>
+                <pattern id="quilt" x="0" y="0" width="30" height="18" patternUnits="userSpaceOnUse">
+                  <rect width="30" height="18" fill="none"/>
+                  <rect x="1" y="1" width="28" height="16" rx="4" fill="rgba(255,255,255,.15)" stroke="rgba(150,110,40,.15)" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+            </svg>
+          </div>
           <div class="product-showcase-title">Banda Térmica Abdominal Natural</div>
           <div class="product-showcase-desc">Tela ergonómica suave con relleno activo de manzanilla, jengibre y menta. Empaque ecológico individual con QR digital.</div>
           <div class="showcase-pills">
@@ -589,6 +654,10 @@ footer{
             <span class="spill sp-green">+ QR digital</span>
           </div>
         </div>
+        <style>
+          @keyframes pulseGlow{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+          @keyframes sparkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.6)}}
+        </style>
       </div>
       <div class="que-es-feats">
         <div class="qef"><div class="qef-icon">🌡️</div><div><h4>Calor terapéutico activo</h4><p>20 a 30 minutos de calor suave sobre el abdomen que activa el bienestar digestivo sin químicos ni artificiales.</p></div></div>
@@ -746,22 +815,34 @@ footer{
   <div class="container">
     <div class="section-tag fade-in">Contáctanos</div>
     <h2 class="section-title fade-in">Estamos para ti</h2>
-    <p class="section-sub fade-in">¿Preguntas sobre el producto, pedidos o puntos de venta en Bogotá? Escríbenos.</p>
+    <p class="section-sub fade-in">¿Preguntas sobre el producto, pedidos o puntos de venta en Bogotá? Escríbenos y te respondemos al instante.</p>
     <div class="contact-grid">
       <div class="social-list">
+        <a href="https://wa.me/573208394845?text=Hola%20Vitalis%20Digest%2C%20me%20interesa%20el%20producto" target="_blank" class="sc" style="border:2px solid #25D366">
+          <div class="sc-icon" style="background:#dcfce7;font-size:1.5rem">💬</div>
+          <div><h4 style="color:#16a34a">WhatsApp · Vitalis Digest</h4><p>+57 320 839 4845 · Toca para escribirnos ahora</p></div>
+        </a>
+        <a href="tel:+573208394845" class="sc">
+          <div class="sc-icon" style="background:var(--gpale)">📞</div>
+          <div><h4>Teléfono · Vitalis Digest</h4><p>320 839 4845 · Lunes a sábado</p></div>
+        </a>
         <a href="#" class="sc"><div class="sc-icon" style="background:#fce4ec">📸</div><div><h4>Instagram</h4><p>@vitalisdigest · Contenido de bienestar diario</p></div></a>
         <a href="#" class="sc"><div class="sc-icon" style="background:#e8f4fd">🎵</div><div><h4>TikTok</h4><p>@vitalisdigest · Tips de autocuidado digestivo</p></div></a>
         <a href="#" class="sc"><div class="sc-icon" style="background:var(--gpale)">🛍️</div><div><h4>Tiendas naturistas · Bogotá</h4><p>Sector Las Ferias y puntos de venta seleccionados</p></div></a>
-        <a href="#" class="sc"><div class="sc-icon" style="background:var(--goldpale)">📧</div><div><h4>Email</h4><p>hola@vitalisdigest.co</p></div></a>
-        <a href="#" class="sc"><div class="sc-icon" style="background:#e8f5e9">🟢</div><div><h4>WhatsApp</h4><p>+57 310 000 0000 · Atención inmediata</p></div></a>
       </div>
       <div class="cform">
         <h3>Envíanos un mensaje</h3>
-        <input type="text" placeholder="Tu nombre completo">
-        <input type="email" placeholder="Correo electrónico">
-        <input type="text" placeholder="Asunto">
-        <textarea placeholder="¿En qué podemos ayudarte?"></textarea>
-        <button class="cform-btn" onclick="this.textContent='✅ ¡Mensaje enviado! Te contactamos pronto.'">Enviar mensaje</button>
+        <p style="font-size:.82rem;color:var(--soft);margin-bottom:.3rem">Los datos te llegan directo a <strong>WhatsApp 320 839 4845</strong> 🌿</p>
+        <input type="text" id="fn" placeholder="Tu nombre completo" required>
+        <input type="tel" id="fc" placeholder="Tu celular o WhatsApp" required>
+        <input type="text" id="fa" placeholder="Asunto (ej: quiero pedir el producto)">
+        <textarea id="fm" placeholder="¿En qué podemos ayudarte?"></textarea>
+        <button class="cform-btn" id="submitBtn" onclick="sendWhatsApp()">Enviar por WhatsApp 💬</button>
+        <div id="successMsg" style="display:none;background:var(--gpale);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center;margin-top:.5rem">
+          <div style="font-size:1.4rem">✅</div>
+          <div style="font-weight:500;color:var(--g1);font-size:.92rem;margin-top:.3rem">¡Redirigiendo a WhatsApp!</div>
+          <div style="font-size:.8rem;color:var(--soft);margin-top:.2rem">Te ponemos en contacto con <strong>+57 320 839 4845</strong> 🌿</div>
+        </div>
       </div>
     </div>
   </div>
@@ -783,6 +864,19 @@ footer{
 <script>
 // Nav scroll
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+
+// WhatsApp form
+function sendWhatsApp(){
+  const n=document.getElementById('fn').value.trim();
+  const c=document.getElementById('fc').value.trim();
+  const a=document.getElementById('fa').value.trim();
+  const m=document.getElementById('fm').value.trim();
+  if(!n||!c){alert('Por favor ingresa tu nombre y celular');return;}
+  const msg=`Hola Vitalis Digest! 🌿%0ANombre: ${n}%0ACelular: ${c}%0AAsunto: ${a||'Consulta producto'}%0AMensaje: ${m||'Me interesa el producto'}`;
+  document.getElementById('successMsg').style.display='block';
+  document.getElementById('submitBtn').textContent='✅ ¡Enviado!';
+  setTimeout(()=>{ window.open(`https://wa.me/573208394845?text=${msg}`,'_blank'); },600);
+}
 
 // Intersection observer
 const io = new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('vis')),{threshold:.12});
